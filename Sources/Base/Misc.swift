@@ -84,6 +84,23 @@ public extension String {
         return self[start...end]
     }
     
+    //To numbers
+    var int: Int {
+        return Int(self)!
+    }
+    
+    var cgFloat: CGFloat {
+        return CGFloat(self.float)
+    }
+    
+    var float: Float {
+        return Float(self)!
+    }
+    
+    var double: Double {
+        return Double(self)!
+    }
+    
     static func random(_ length: Int) -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let len = UInt32(letters.length)
@@ -237,7 +254,7 @@ public extension Float {
 }
 
 public extension CGFloat {
-    func toRadius() -> CGFloat {
+    var radius: CGFloat {
         return self * CGFloat(M_PI / 180)
     }
     
