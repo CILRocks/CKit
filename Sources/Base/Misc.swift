@@ -133,6 +133,10 @@ public extension String {
         }
         return newString
     }
+    
+    func format(_ format: String) -> String {
+        return String(format: format, self)
+    }
 }
 
 public extension Bool {
