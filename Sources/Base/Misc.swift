@@ -137,6 +137,10 @@ public extension String {
     func format(_ format: String) -> String {
         return String(format: format, self)
     }
+    
+    mutating func addPrefix(_ aString: String) {
+        self = "\(aString)\(self)"
+    }
 }
 
 public extension Bool {
