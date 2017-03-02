@@ -161,6 +161,10 @@ public extension Bool {
     var string: String {
         return "\(self)"
     }
+    
+    mutating func reverse() {
+        self = !self
+    }
 }
 
 public extension Int {
@@ -214,6 +218,15 @@ public extension Int {
     var float: Float {
         return Float(self)
     }
+    
+    mutating func limitIn(_ begin: Int, _ end: Int) {
+        if self < begin {
+            self = begin
+        }
+        if self > end {
+            self = end
+        }
+    }
 }
 
 public extension Double {
@@ -231,6 +244,15 @@ public extension Double {
     
     var float: Float {
         return Float(self)
+    }
+    
+    mutating func limitIn(_ begin: Double, _ end: Double) {
+        if self < begin {
+            self = begin
+        }
+        if self > end {
+            self = end
+        }
     }
 }
 
@@ -254,6 +276,15 @@ public extension Float {
     
     var cgFloat: CGFloat {
         return CGFloat(self)
+    }
+    
+    mutating func limitIn(_ begin: Float, _ end: Float) {
+        if self < begin {
+            self = begin
+        }
+        if self > end {
+            self = end
+        }
     }
 }
 
@@ -282,6 +313,15 @@ public extension CGFloat {
     var float: Float {
         return Float(self)
     }
+    
+    mutating func limitIn(_ begin: CGFloat, _ end: CGFloat) {
+        if self < begin {
+            self = begin
+        }
+        if self > end {
+            self = end
+        }
+    }
 }
 
 public extension UserDefaults {
@@ -302,4 +342,10 @@ public func sqr(x: CGFloat) -> CGFloat {
 
 public func sqr(x: Float) -> Float {
     return x * x
+}
+
+public extension LazyMapRandomAccessCollection {
+    var array: [Any] {
+        return Array(self)
+    }
 }
