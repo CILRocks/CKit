@@ -13,11 +13,11 @@ public protocol CKViewType {
 }
 
 public protocol CKModelType {
-    func renderInView<V: CKViewType>(_ view: V)
+    func render<V: CKViewType>(in view: V)
 }
 
 public extension CKModelType {
-    func renderInView<V : CKViewType>(_ view: V) {
+    func render<V : CKViewType>(in view: V) {
         view.render(self)
     }
 }

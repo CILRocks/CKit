@@ -138,7 +138,7 @@ public extension String {
         return String(format: format, self)
     }
     
-    mutating func addPrefix(_ aString: String) {
+    mutating func prefix(_ aString: String) {
         self = "\(aString)\(self)"
     }
 }
