@@ -61,6 +61,10 @@ public extension NSLocale {
     static var isChina: Bool {
         return NSLocale.current.regionCode == "CN"
     }
+    
+    static var languageRegionCode: String {
+        return "\(self.current.languageCode)-\(self.current.regionCode)"
+    }
 }
 
 public extension String {
@@ -126,15 +130,31 @@ public extension String {
         self = self.capitalizingFirstLetter()
     }
     
-    func escape() -> String {
-        var newString = self.replacingOccurrences(of: "\"", with: "\"\"")
-        if newString.contains(",") || newString.contains("\n") {
-            newString = String(format: "\"%@\"", newString)
+    mutating func escape() {
+        var new = self.replacingOccurrences(of: "\"", with: "\"\"")
+        if new.contains(",") || new.contains("\n") {
+            new = String(format: "\"%@\"", new)
         }
-        return newString
+        self = new
     }
     
-    func format(_ format: String) -> String {
+    var encodedURI: String {
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+    }
+    
+    var escaped: String {
+        var new = self.replacingOccurrences(of: "\"", with: "\"\"")
+        if new.contains(",") || new.contains("\n") {
+            new = String(format: "\"%@\"", new)
+        }
+        return new
+    }
+    
+    mutating func format(using format: String) {
+        self = String(format: format, self)
+    }
+    
+    func formatted(using format: String) -> String {
         return String(format: format, self)
     }
     
