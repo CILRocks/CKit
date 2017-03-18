@@ -63,7 +63,7 @@ public extension NSLocale {
     }
     
     static var languageRegionCode: String {
-        return "\(self.current.languageCode)-\(self.current.regionCode)"
+        return "\(self.current.languageCode!)-\(self.current.regionCode!)"
     }
 }
 
@@ -103,6 +103,10 @@ public extension String {
     
     var double: Double {
         return Double(self)!
+    }
+    
+    var nsString: NSString {
+        return NSString(string: self)
     }
     
     static func random(_ length: Int) -> String {
