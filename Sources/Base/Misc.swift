@@ -33,6 +33,24 @@ import Foundation
             return current.userInterfaceIdiom == .phone
         }
     }
+    
+    open class CKBezierPath: UIBezierPath {
+        open func move(to point: [CGFloat]) {
+            move(to: point.cgPoint)
+        }
+        
+        open func addLine(to point: [CGFloat]) {
+            addLine(to: point.cgPoint)
+        }
+        
+        open func addQuadCurve(to endPoint: [CGFloat], controlPoint: [CGFloat]) {
+            addQuadCurve(to: endPoint.cgPoint, controlPoint: controlPoint.cgPoint)
+        }
+        
+        open func addCurve(to endPoint: [CGFloat], controlPoint1: [CGFloat], controlPoint2: [CGFloat]) {
+            addCurve(to: endPoint.cgPoint, controlPoint1: controlPoint1.cgPoint, controlPoint2: controlPoint2.cgPoint)
+        }
+    }
 #endif
 
 #if os(OSX)
@@ -55,7 +73,140 @@ import Foundation
             self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
         }
     }
+    
+    open class CKBezierPath: NSBezierPath {
+        open func move(to point: [CGFloat]) {
+            move(to: point.cgPoint)
+        }
+        
+        open func line(to point: [CGFloat]) {
+            line(to: point.cgPoint)
+        }
+        
+        open func curve(to endPoint: [CGFloat], controlPoint1: [CGFloat], controlPoint2: [CGFloat]) {
+            curve(to: endPoint.cgPoint, controlPoint1: controlPoint1.cgPoint, controlPoint2: controlPoint2.cgPoint)
+        }
+    }
 #endif
+
+public enum CKTemperatureUnit {
+    case celsius
+    case fahrenheit
+}
+
+public struct CKTemperature: CustomStringConvertible {
+    var value: Double!
+    var unit: CKTemperatureUnit = .fahrenheit {
+        didSet {
+            convert(to: unit)
+        }
+    }
+    let defaultUnit: CKTemperatureUnit = .fahrenheit
+    
+    init(_ value: Double, unit: CKTemperatureUnit) {
+        self.value = value
+        self.unit = unit
+    }
+    
+    private mutating func convert(to unit: CKTemperatureUnit) {
+        switch unit {
+        case .celsius:
+            value = (value - 32) / 1.8
+        case .fahrenheit:
+            value = value * 1.8 + 32
+        }
+    }
+    
+    public var description: String {
+        return "\(value)°\(unit == .celsius ? "C" : "F")"
+    }
+}
+
+extension CKTemperature: Equatable, IntegerArithmetic {
+    public static func ==(lhs: CKTemperature, rhs: CKTemperature) -> Bool {
+        var r = rhs
+        r.unit = lhs.unit
+        return lhs.value == r.value
+    }
+    
+    public static func <(lhs: CKTemperature, rhs: CKTemperature) -> Bool {
+        var r = rhs
+        r.unit = lhs.unit
+        return lhs.value < r.value
+    }
+    
+    public static func <=(lhs: CKTemperature, rhs: CKTemperature) -> Bool {
+        var r = rhs
+        r.unit = lhs.unit
+        return lhs.value <= r.value
+    }
+    
+    public static func >(lhs: CKTemperature, rhs: CKTemperature) -> Bool {
+        var r = rhs
+        r.unit = lhs.unit
+        return lhs.value > r.value
+    }
+    
+    public static func >=(lhs: CKTemperature, rhs: CKTemperature) -> Bool {
+        var r = rhs
+        r.unit = lhs.unit
+        return lhs.value >= r.value
+    }
+    
+    public static func %(lhs: CKTemperature, rhs: CKTemperature) -> CKTemperature {
+        var r = rhs
+        r.unit = lhs.unit
+        return CKTemperature(lhs.value.truncatingRemainder(dividingBy: r.value), unit: lhs.unit)
+    }
+    
+    public static func *(lhs: CKTemperature, rhs: CKTemperature) -> CKTemperature {
+        var r = rhs
+        r.unit = lhs.unit
+        return CKTemperature(lhs.value * r.value, unit: lhs.unit)
+    }
+    
+    public static func +(lhs: CKTemperature, rhs: CKTemperature) -> CKTemperature {
+        var r = rhs
+        r.unit = lhs.unit
+        return CKTemperature(lhs.value + r.value, unit: lhs.unit)
+    }
+    
+    public static func -(lhs: CKTemperature, rhs: CKTemperature) -> CKTemperature {
+        var r = rhs
+        r.unit = lhs.unit
+        return CKTemperature(lhs.value - r.value, unit: lhs.unit)
+    }
+    
+    public static func /(lhs: CKTemperature, rhs: CKTemperature) -> CKTemperature {
+        var r = rhs
+        r.unit = lhs.unit
+        return CKTemperature(lhs.value / r.value, unit: lhs.unit)
+    }
+    
+    public func toIntMax() -> IntMax {
+        return IntMax()
+    }
+    
+    public static func addWithOverflow(_ lhs: CKTemperature, _ rhs: CKTemperature) -> (CKTemperature, overflow: Bool) {
+        return (lhs + rhs, Int64((lhs + rhs).value) > IntMax())
+    }
+    
+    public static func divideWithOverflow(_ lhs: CKTemperature, _ rhs: CKTemperature) -> (CKTemperature, overflow: Bool) {
+        return (lhs / rhs, Int64((lhs / rhs).value) > IntMax())
+    }
+    
+    public static func multiplyWithOverflow(_ lhs: CKTemperature, _ rhs: CKTemperature) -> (CKTemperature, overflow: Bool) {
+        return (lhs * rhs, Int64((lhs * rhs).value) > IntMax())
+    }
+    
+    public static func remainderWithOverflow(_ lhs: CKTemperature, _ rhs: CKTemperature) -> (CKTemperature, overflow: Bool) {
+        return (lhs % rhs, Int64((lhs % rhs).value) > IntMax())
+    }
+    
+    public static func subtractWithOverflow(_ lhs: CKTemperature, _ rhs: CKTemperature) -> (CKTemperature, overflow: Bool) {
+        return (lhs - rhs, Int64((lhs - rhs).value) > IntMax())
+    }
+}
 
 public extension NSLocale {
     static var isChina: Bool {
@@ -206,7 +357,7 @@ public extension Int {
         }
     }
     
-    static func random(_ a: Int, _ b: Int) -> Int {
+    static func random(_ a: Int = 0, _ b: Int) -> Int {
         var a = a
         var b = b
         if a > b {
@@ -357,6 +508,39 @@ public extension CGFloat {
         }
         if self > end {
             self = end
+        }
+    }
+}
+
+public extension Array {
+    var shuffled: [Any] {
+        var result = self
+        for _ in 0...32 {
+            let a = Int.random(0, result.count - 1)
+            var b = 0
+            repeat {
+                b = Int.random(0, result.count - 1)
+            } while a == b
+            let t = result[b]
+            result[b] = result[a]
+            result[a] = t
+        }
+        return result
+    }
+    
+    var cgPoint: CGPoint {
+        if count > 1 {
+            if Element.self is CGFloat.Type {
+                return CGPoint(x: self[0] as! CGFloat, y: self[1] as! CGFloat)
+            } else if Element.self is Double.Type {
+                return CGPoint(x: self[0] as! Double, y: self[1] as! Double)
+            } else if Element.self is Int.Type {
+                return CGPoint(x: self[0] as! Int, y: self[1] as! Int)
+            } else {
+                return CGPoint.zero
+            }
+        } else {
+            return CGPoint.zero
         }
     }
 }
