@@ -478,7 +478,7 @@ public extension Float {
 
 public extension CGFloat {
     var radius: CGFloat {
-        return self * CGFloat(M_PI / 180)
+        return self * CGFloat(Double.pi / 180)
     }
     
     mutating func sqr() -> CGFloat {
