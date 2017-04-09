@@ -13,18 +13,19 @@ import Foundation
 #endif
 
 #if os(OSX)
-    public class CKAutofillImageView: NSView {
+    open class CKAutofillImageView: NSView {
         @IBInspectable var imageNamed: String = "" {
             didSet {
                 imageView.image = NSImage(named: imageNamed)
             }
         }
         
-        @IBInspectable var scrimColor: String = "000000" {
+        @IBInspectable var scrimColor: NSColor = .black {
             didSet {
-                scrim.layer?.backgroundColor = NSColor(hex: scrimColor).cgColor
+                scrim.layer?.backgroundColor = scrimColor.cgColor
             }
         }
+        
         @IBInspectable var scrimOpacity: Float = 0 {
             didSet {
                 scrim.layer?.opacity = scrimOpacity
@@ -38,7 +39,7 @@ import Foundation
         private var originalSize: NSSize!
         private var aspectRatio: CGFloat!
         
-        public override func awakeFromNib() {
+        open override func awakeFromNib() {
             addSubview(imageView)
             imageView.frame = bounds
             imageView.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .horizontal)
@@ -48,7 +49,7 @@ import Foundation
             scrim.wantsLayer = true
         }
         
-        override public func layout() {
+        override open func layout() {
             super.layout()
             
             let size = bounds.size
@@ -65,7 +66,7 @@ import Foundation
             scrim.frame.size = size
         }
         
-        func setImage(_ image: NSImage = NSImage()) {
+        final func setImage(_ image: NSImage = NSImage()) {
             imageView.image = image
             
             originalSize = image.representations.first?.size
@@ -73,7 +74,7 @@ import Foundation
             layout()
         }
         
-        func scrim(lighter: Float) {
+        final func scrim(lighter: Float) {
             var o = scrimOpacity - lighter
             if o < scrimOpacityMin {
                 o = scrimOpacityMin
@@ -81,7 +82,7 @@ import Foundation
             scrimOpacity = o
         }
         
-        func scrim(darker: Float) {
+        final func scrim(darker: Float) {
             var o = scrimOpacity + darker
             if o > scrimOpacityMax {
                 o = scrimOpacityMax

@@ -7,23 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B24E18051E9912B6001B20E4 /* CKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E18041E9912B6001B20E4 /* CKNumber.swift */; };
+		B24E18061E9912D5001B20E4 /* CKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E18041E9912B6001B20E4 /* CKNumber.swift */; };
 		B26750701E68D88E0011E264 /* CKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267506F1E68D88E0011E264 /* CKViewModel.swift */; };
 		B26750711E68D88E0011E264 /* CKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267506F1E68D88E0011E264 /* CKViewModel.swift */; };
 		B27A62361E532EB80035A702 /* CKLocalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62351E532EB80035A702 /* CKLocalize.swift */; };
 		B27A62371E532EB80035A702 /* CKLocalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62351E532EB80035A702 /* CKLocalize.swift */; };
 		B27A623A1E5331190035A702 /* CKAutofillImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62391E5331190035A702 /* CKAutofillImageView.swift */; };
 		B27A62471E541E380035A702 /* CKPanMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62451E541E380035A702 /* CKPanMenuViewController.swift */; };
-		B2C243DB1E509C2600D14B2B /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C243C61E50951900D14B2B /* Misc.swift */; };
-		B2C243ED1E50A03500D14B2B /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C243C61E50951900D14B2B /* Misc.swift */; };
+		B2C243DB1E509C2600D14B2B /* CKMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C243C61E50951900D14B2B /* CKMisc.swift */; };
+		B2C243ED1E50A03500D14B2B /* CKMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C243C61E50951900D14B2B /* CKMisc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B24E18041E9912B6001B20E4 /* CKNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNumber.swift; sourceTree = "<group>"; };
 		B267506F1E68D88E0011E264 /* CKViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKViewModel.swift; path = ViewModel/CKViewModel.swift; sourceTree = "<group>"; };
 		B27A62351E532EB80035A702 /* CKLocalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKLocalize.swift; path = Localize/CKLocalize.swift; sourceTree = "<group>"; };
 		B27A62391E5331190035A702 /* CKAutofillImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKAutofillImageView.swift; path = Interface/CKAutofillImageView.swift; sourceTree = "<group>"; };
 		B27A62451E541E380035A702 /* CKPanMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKPanMenuViewController.swift; path = Interface/CKPanMenuViewController.swift; sourceTree = "<group>"; };
 		B2C243961E508F2100D14B2B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2C243C61E50951900D14B2B /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		B2C243C61E50951900D14B2B /* CKMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKMisc.swift; sourceTree = "<group>"; };
 		B2C243D31E509B7E00D14B2B /* CKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C243E51E509FA800D14B2B /* CKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,7 +106,8 @@
 		B2C243C51E50951900D14B2B /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				B2C243C61E50951900D14B2B /* Misc.swift */,
+				B2C243C61E50951900D14B2B /* CKMisc.swift */,
+				B24E18041E9912B6001B20E4 /* CKNumber.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -224,8 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24E18051E9912B6001B20E4 /* CKNumber.swift in Sources */,
 				B27A62361E532EB80035A702 /* CKLocalize.swift in Sources */,
-				B2C243DB1E509C2600D14B2B /* Misc.swift in Sources */,
+				B2C243DB1E509C2600D14B2B /* CKMisc.swift in Sources */,
 				B26750701E68D88E0011E264 /* CKViewModel.swift in Sources */,
 				B27A623A1E5331190035A702 /* CKAutofillImageView.swift in Sources */,
 			);
@@ -235,10 +240,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24E18061E9912D5001B20E4 /* CKNumber.swift in Sources */,
 				B27A62371E532EB80035A702 /* CKLocalize.swift in Sources */,
 				B27A62471E541E380035A702 /* CKPanMenuViewController.swift in Sources */,
 				B26750711E68D88E0011E264 /* CKViewModel.swift in Sources */,
-				B2C243ED1E50A03500D14B2B /* Misc.swift in Sources */,
+				B2C243ED1E50A03500D14B2B /* CKMisc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +273,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = CKit;
@@ -295,7 +301,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = CKit;
 			};
