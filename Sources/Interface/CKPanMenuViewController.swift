@@ -19,6 +19,8 @@
         @IBOutlet public var menuViewConstraints: [NSLayoutConstraint]!
         private var menuViewBaseConstraintIndex = 0
         fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
+        fileprivate var perpendicularPanGestureRecognizer: UIPanGestureRecognizer!
+        public var safeZone: CGRect!
         
         public var position: PanMenuScreenPosition = .top
         public var items = [CKPanMenuItemType]()
@@ -104,9 +106,13 @@
             
             // Do any additional setup after loading the view.
             //Pan gesture
+            safeZone = view.bounds
             panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(contentDidPan(_:)))
             panGestureRecognizer.delegate = self
             contentView.addGestureRecognizer(panGestureRecognizer)
+            perpendicularPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(contentDidPanPerpendicular(_:)))
+            perpendicularPanGestureRecognizer.delegate = self
+            contentView.addGestureRecognizer(perpendicularPanGestureRecognizer)
             //Menu view
             menuView.axis = isVertical ? .vertical : .horizontal
             menuView.alignment = .center
@@ -130,6 +136,14 @@
             menuView.setNeedsUpdateConstraints()
         }
         
+        /**
+         Init and append a `menu item`.
+         
+         - parameter itemWithTitle: `item title`.
+         - parameter action: an `action` that will be executed when user highlight and release finger on an `menu item`.
+         
+         - author: John Cido
+         */
         final public func append(itemWithTitle title: String, action: @escaping (inout CKPanMenuItemType) -> Void) {
             let item = CKPanMenuItem()
             item.font = UIFont(name: fontName != nil ? fontName! : item.font.fontName, size: fontSize)
@@ -147,6 +161,41 @@
             }
         }
         
+        /**
+         Init and insert a `menu item` at `index`.
+         
+         - parameter itemWithTitle: `item title`.
+         - parameter action: an `action` that will be executed when user highlight and release finger on an `menu item`.
+         - parameter at: specify `index` that item should be insert at
+         
+         - author: John Cido
+         */
+        final public func insert(
+            itemWithTitle title: String, action: @escaping (inout CKPanMenuItemType) -> Void, at index: Int
+            ) {
+            let item = CKPanMenuItem()
+            item.font = UIFont(name: fontName != nil ? fontName! : item.font.fontName, size: fontSize)
+            item.index = items.count
+            item.action = action
+            item.text = title
+            item.textColor = color
+            item.resume()
+            if directionFactor == 1 {
+                items.insert(item, at: index)
+                menuView.insertArrangedSubview(item, at: index)
+            } else {
+                items.insert(item, at: items.count - 1 - index)
+                menuView.insertArrangedSubview(item, at: items.count - 1 - index)
+            }
+        }
+        
+        /**
+         Append a custome defined `menu item`.
+         
+         - parameter item: an `item title` that conforms to `protocol CKPanMenuItemType`.
+         
+         - author: John Cido
+         */
         final public func append(item: CKPanMenuItemType) {
             var item = item
             item.index = items.count
@@ -154,9 +203,45 @@
             directionFactor == 1 ? menuView.addArrangedSubview(item as! UIView) : menuView.insertArrangedSubview(item as! UIView, at: 0)
         }
         
-        final public func contentDidPan(_ sender: UIPanGestureRecognizer) {
-            let state = sender.state
-            let translation = sender.translation(in: view)
+        public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            switch gestureRecognizer {
+            case panGestureRecognizer:
+                let velocity = panGestureRecognizer.velocity(in: view)
+                let factor: CGFloat = 1.2
+                let result = isVertical ? abs(velocity.x) * factor < abs(velocity.y)
+                    : abs(velocity.y) * factor < abs(velocity.x)
+                return result
+            case perpendicularPanGestureRecognizer:
+                let velocity = panGestureRecognizer.velocity(in: view)
+                let factor: CGFloat = 1.2
+                let result = isVertical ? abs(velocity.x) * factor > abs(velocity.y)
+                    : abs(velocity.y) * factor > abs(velocity.x)
+                return result
+            default:
+                return true
+            }
+        }
+   
+//        public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//            if gestureRecognizer == panGestureRecognizer {
+//                return safeZone.contains(touch.location(in: view))
+//            } else {
+//                return true
+//            }
+//        }
+        
+        public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        let a = gestureRecognizer == panGestureRecognizer && otherGestureRecognizer == perpendicularPanGestureRecognizer
+        let b = gestureRecognizer == perpendicularPanGestureRecognizer && otherGestureRecognizer == panGestureRecognizer
+            return a || b
+        }
+        
+        open func contentDidPanPerpendicular(_ recognizer: UIPanGestureRecognizer) { }
+        
+        open func contentDidPan(_ recognizer: UIPanGestureRecognizer) {
+            let state = recognizer.state
+            let translation = recognizer.translation(in: view)
+            
             var origin, limit, end: CGFloat!
             if isVertical {
                 origin = 20 + contentView.bounds.height / 2
@@ -191,6 +276,9 @@
             //Detect selected menu item
             let diff = abs(end - origin)
             var aSelected = ((diff - spacing - itemLength) / (itemLength + spacing)).rounded(.down).int
+            if directionFactor != 1 {
+                aSelected = items.count - 1 - aSelected
+            }
             //print((diff, itemLength + spacing, selected!))
             let min = spacing + fontSize + (fontSize + spacing) * aSelected.cgFloat
             let max = min + spacing
