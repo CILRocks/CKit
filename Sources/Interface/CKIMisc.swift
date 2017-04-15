@@ -59,6 +59,52 @@ import Foundation
             addCurve(to: endPoint.cgPoint, controlPoint1: controlPoint1.cgPoint, controlPoint2: controlPoint2.cgPoint)
         }
     }
+    
+    public protocol CKSubViewType {
+        func willAppear(_ animated: Bool) -> Void
+        func didAppear(_ animated: Bool) -> Void
+        func willDisappear(_ animated: Bool) -> Void
+        func didDisappear(_ animated: Bool) -> Void
+    }
+    
+    open class CKView: UIView, CKSubViewType {
+        open func didDisappear(_ animated: Bool) { }
+        open func willDisappear(_ animated: Bool) { }
+        open func didAppear(_ animated: Bool) { }
+        open func willAppear(_ animated: Bool) { }
+    }
+    
+    open class CKViewController: UIViewController {
+        public var viewEventListeners = [CKView]()
+        
+        open override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            for ckView in viewEventListeners {
+                ckView.willAppear(animated)
+            }
+        }
+        
+        open override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            for ckView in viewEventListeners {
+                ckView.didAppear(animated)
+            }
+        }
+        
+        open override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            for ckView in viewEventListeners {
+                ckView.willDisappear(animated)
+            }
+        }
+        
+        open override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            for ckView in viewEventListeners {
+                ckView.didDisappear(animated)
+            }
+        }
+    }
 #endif
 
 #if os(OSX)

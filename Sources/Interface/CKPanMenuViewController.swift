@@ -12,7 +12,7 @@
 
 #if os(iOS)
     @available(iOS 9.0, *)
-    @IBDesignable open class CKPanMenuViewController: UIViewController, UIGestureRecognizerDelegate {
+    open class CKPanMenuViewController: CKViewController, UIGestureRecognizerDelegate {
         @IBOutlet public weak var contentView: UIView!
         @IBOutlet public weak var menuView: UIStackView!
         //Clockwise constraints

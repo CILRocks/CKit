@@ -114,8 +114,16 @@ public extension ClosedRange where Bound: FloatingPoint {
 }
 
 public extension Double {
+    var radius: Double {
+        return self * (.pi / 180)
+    }
+    
     var string: String {
         return "\(self)"
+    }
+    
+    func string(digits: Int) -> String {
+        return String(format: "%.\(digits)f", self)
     }
     
     var int: Int {
@@ -141,6 +149,10 @@ public extension Double {
 }
 
 public extension Float {
+    var radius: Float {
+        return self * Float(Double.pi / 180)
+    }
+    
     mutating func sqr() -> Float? {
         self = self * self
         return self
@@ -148,6 +160,10 @@ public extension Float {
     
     var string: String {
         return "\(self)"
+    }
+    
+    func string(digits: Int) -> String {
+        return String(format: "%.\(digits)f", self)
     }
     
     var int: Int {
@@ -184,6 +200,10 @@ public extension CGFloat {
     
     var string: String {
         return "\(self)"
+    }
+    
+    func string(digits: Int) -> String {
+        return String(format: "%.\(digits)f", self)
     }
     
     var int: Int {
