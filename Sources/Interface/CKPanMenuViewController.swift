@@ -23,7 +23,11 @@
         public var safeZone: CGRect!
         
         public var position: PanMenuScreenPosition = .top
-        public var items = [CKPanMenuItemType]()
+        public var items = [CKPanMenuItemType]() {
+            didSet {
+                isEnabled = items.count != 0
+            }
+        }
         public var fontSize: CGFloat = 15
         public var fontName: String?
         public var color: UIColor = .black
@@ -42,7 +46,7 @@
             }
         }
         
-        public var isEnabled = true {
+        public var isEnabled = false {
             didSet {
                 panGestureRecognizer.isEnabled = isEnabled
             }
@@ -94,10 +98,14 @@
         }
         
         public var itemLength: CGFloat {
-            if isVertical {
-                return items[0].bounds.height
+            if items.count == 0 {
+                return 0
             } else {
-                return items[0].bounds.width
+                if isVertical {
+                    return items[0].bounds.height
+                } else {
+                    return items[0].bounds.width
+                }
             }
         }
 
@@ -108,9 +116,11 @@
             //Pan gesture
             safeZone = view.bounds
             panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(contentDidPan(_:)))
+            panGestureRecognizer.maximumNumberOfTouches = 1
             panGestureRecognizer.delegate = self
             contentView.addGestureRecognizer(panGestureRecognizer)
             perpendicularPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(contentDidPanPerpendicular(_:)))
+            perpendicularPanGestureRecognizer.maximumNumberOfTouches = 1
             perpendicularPanGestureRecognizer.delegate = self
             contentView.addGestureRecognizer(perpendicularPanGestureRecognizer)
             //Menu view
@@ -214,21 +224,13 @@
             case perpendicularPanGestureRecognizer:
                 let velocity = panGestureRecognizer.velocity(in: view)
                 let factor: CGFloat = 1.2
-                let result = isVertical ? abs(velocity.x) * factor > abs(velocity.y)
-                    : abs(velocity.y) * factor > abs(velocity.x)
+                let result = isVertical ? abs(velocity.x) > abs(velocity.y) * factor
+                    : abs(velocity.y) > abs(velocity.x) * factor
                 return result
             default:
                 return true
             }
         }
-   
-//        public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-//            if gestureRecognizer == panGestureRecognizer {
-//                return safeZone.contains(touch.location(in: view))
-//            } else {
-//                return true
-//            }
-//        }
         
         public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         let a = gestureRecognizer == panGestureRecognizer && otherGestureRecognizer == perpendicularPanGestureRecognizer
@@ -239,6 +241,7 @@
         open func contentDidPanPerpendicular(_ recognizer: UIPanGestureRecognizer) { }
         
         open func contentDidPan(_ recognizer: UIPanGestureRecognizer) {
+            if isEnabled {
             let state = recognizer.state
             let translation = recognizer.translation(in: view)
             
@@ -290,11 +293,13 @@
             if state == .ended {
                 if isVertical {
                     UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
-                        self.contentView.layer.position.y = origin
+                        [weak self] in
+                        self?.contentView.layer.position.y = origin
                     })
                 } else {
                     UIView.animate(withDuration: 0.24, delay: 0, options: .curveEaseOut, animations: {
-                        self.contentView.layer.position.x = origin
+                        [weak self] in
+                        self?.contentView.layer.position.x = origin
                     })
                 }
                 //Check if ativate a menu item
@@ -303,6 +308,7 @@
                         items[selected!].action(&items[selected!])
                     }
                 }
+            }
             }
         }
         

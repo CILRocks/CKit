@@ -11,6 +11,8 @@
 		B24E18061E9912D5001B20E4 /* CKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E18041E9912B6001B20E4 /* CKNumber.swift */; };
 		B26750701E68D88E0011E264 /* CKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267506F1E68D88E0011E264 /* CKViewModel.swift */; };
 		B26750711E68D88E0011E264 /* CKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267506F1E68D88E0011E264 /* CKViewModel.swift */; };
+		B26A1F9F1EA0F6910081C131 /* CKIMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1F9E1EA0F6910081C131 /* CKIMisc.swift */; };
+		B26A1FA01EA0F6910081C131 /* CKIMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1F9E1EA0F6910081C131 /* CKIMisc.swift */; };
 		B27A62361E532EB80035A702 /* CKLocalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62351E532EB80035A702 /* CKLocalize.swift */; };
 		B27A62371E532EB80035A702 /* CKLocalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62351E532EB80035A702 /* CKLocalize.swift */; };
 		B27A623A1E5331190035A702 /* CKAutofillImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A62391E5331190035A702 /* CKAutofillImageView.swift */; };
@@ -22,6 +24,7 @@
 /* Begin PBXFileReference section */
 		B24E18041E9912B6001B20E4 /* CKNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNumber.swift; sourceTree = "<group>"; };
 		B267506F1E68D88E0011E264 /* CKViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKViewModel.swift; path = ViewModel/CKViewModel.swift; sourceTree = "<group>"; };
+		B26A1F9E1EA0F6910081C131 /* CKIMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKIMisc.swift; path = Interface/CKIMisc.swift; sourceTree = "<group>"; };
 		B27A62351E532EB80035A702 /* CKLocalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKLocalize.swift; path = Localize/CKLocalize.swift; sourceTree = "<group>"; };
 		B27A62391E5331190035A702 /* CKAutofillImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKAutofillImageView.swift; path = Interface/CKAutofillImageView.swift; sourceTree = "<group>"; };
 		B27A62451E541E380035A702 /* CKPanMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKPanMenuViewController.swift; path = Interface/CKPanMenuViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 			children = (
 				B27A62391E5331190035A702 /* CKAutofillImageView.swift */,
 				B27A62451E541E380035A702 /* CKPanMenuViewController.swift */,
+				B26A1F9E1EA0F6910081C131 /* CKIMisc.swift */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -231,6 +235,7 @@
 				B24E18051E9912B6001B20E4 /* CKNumber.swift in Sources */,
 				B27A62361E532EB80035A702 /* CKLocalize.swift in Sources */,
 				B2C243DB1E509C2600D14B2B /* CKMisc.swift in Sources */,
+				B26A1F9F1EA0F6910081C131 /* CKIMisc.swift in Sources */,
 				B26750701E68D88E0011E264 /* CKViewModel.swift in Sources */,
 				B27A623A1E5331190035A702 /* CKAutofillImageView.swift in Sources */,
 			);
@@ -243,6 +248,7 @@
 				B24E18061E9912D5001B20E4 /* CKNumber.swift in Sources */,
 				B27A62371E532EB80035A702 /* CKLocalize.swift in Sources */,
 				B27A62471E541E380035A702 /* CKPanMenuViewController.swift in Sources */,
+				B26A1FA01EA0F6910081C131 /* CKIMisc.swift in Sources */,
 				B26750711E68D88E0011E264 /* CKViewModel.swift in Sources */,
 				B2C243ED1E50A03500D14B2B /* CKMisc.swift in Sources */,
 			);
