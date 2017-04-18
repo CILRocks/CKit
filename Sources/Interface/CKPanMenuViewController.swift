@@ -142,6 +142,7 @@
                 view.removeConstraint(menuViewConstraints[1])
             }
             menuView.spacing = spacing
+            isVertical ? (menuView.frame.size.height = 0) : (menuView.frame.size.width = 0)
             
             menuView.setNeedsUpdateConstraints()
         }

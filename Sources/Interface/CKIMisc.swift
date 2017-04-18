@@ -42,6 +42,33 @@ import Foundation
         }
     }
     
+    public extension UIView {
+        var uiImage: UIImage? {
+            return UIImage(view: self).resized(to: bounds.size)
+        }
+    }
+    
+    public extension UIImage {
+        /**
+         - source: stackoverflow.com/questions/30696307/how-to-convert-a-uiview-to-a-image
+         */
+        convenience init(view: UIView) {
+            UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+            view.layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            self.init(cgImage: image!.resized(to: view.bounds.size)!.cgImage!)
+        }
+        
+        func resized(to aSize: CGSize) -> UIImage? {
+            UIGraphicsBeginImageContextWithOptions(aSize, false, 0.0)
+            draw(in: aSize.cgRect)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+    }
+    
     open class CKBezierPath: UIBezierPath {
         open func move(to point: [CGFloat]) {
             move(to: point.cgPoint)
@@ -142,6 +169,20 @@ import Foundation
         }
     }
 #endif
+
+public extension CGSize {
+    var cgRect: CGRect {
+        return CGRect(origin: CGPoint.zero, size: self)
+    }
+    
+    func cgRect(origin: CGPoint) -> CGRect {
+        return CGRect(origin: origin, size: self)
+    }
+    
+    func cgRect(origin: [CGFloat]) -> CGRect {
+        return CGRect(origin: origin.cgPoint, size: self)
+    }
+}
 
 extension NSLayoutConstraint {
 //    override open var description: String {
