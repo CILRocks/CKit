@@ -42,9 +42,31 @@ import Foundation
         }
     }
     
+    public extension UIApplication {
+        var isFullscreen: Bool {
+            guard let w = self.delegate?.window, let window = w else { return false }
+            return window.frame.equalTo(window.screen.bounds)
+        }
+    }
+    
     public extension UIView {
         var uiImage: UIImage? {
             return UIImage(view: self).resized(to: bounds.size)
+        }
+        
+        func addConstraint(withWidthEqualTo width: CGFloat) {
+            self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width))
+        }
+        
+        func addConstraint(withHieghtEqualTo width: CGFloat) {
+            self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width))
+        }
+    }
+    
+    public extension UIFont {
+        func change(weight: String, size: CGFloat?) -> UIFont {
+            let name = self.fontName.components(separatedBy: "-").first
+            return UIFont(name: "\(name!)-\(weight)", size: size ?? self.pointSize)!
         }
     }
     
@@ -87,22 +109,28 @@ import Foundation
         }
     }
     
-    public protocol CKSubViewType {
+    public protocol CKChildViewType {
         func willAppear(_ animated: Bool) -> Void
         func didAppear(_ animated: Bool) -> Void
         func willDisappear(_ animated: Bool) -> Void
         func didDisappear(_ animated: Bool) -> Void
+        func willResize() -> Void
+        func willLayout() -> Void
+        func didLayout() -> Void
     }
     
-    open class CKView: UIView, CKSubViewType {
+    extension UIView: CKChildViewType {
         open func didDisappear(_ animated: Bool) { }
         open func willDisappear(_ animated: Bool) { }
         open func didAppear(_ animated: Bool) { }
         open func willAppear(_ animated: Bool) { }
+        open func willResize() { }
+        open func willLayout() { }
+        open func didLayout() { }
     }
     
     open class CKViewController: UIViewController {
-        public var viewEventListeners = [CKView]()
+        @IBOutlet var viewEventListeners: [UIView]!
         
         open override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -129,6 +157,27 @@ import Foundation
             super.viewDidDisappear(animated)
             for ckView in viewEventListeners {
                 ckView.didDisappear(animated)
+            }
+        }
+        
+        open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+            super.viewWillTransition(to: size, with: coordinator)
+            for ckView in viewEventListeners {
+                ckView.willResize()
+            }
+        }
+        
+        open override func viewWillLayoutSubviews() {
+            super.viewWillLayoutSubviews()
+            for ckView in viewEventListeners {
+                ckView.willLayout()
+            }
+        }
+        
+        open override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+            for ckView in viewEventListeners {
+                ckView.didLayout()
             }
         }
     }

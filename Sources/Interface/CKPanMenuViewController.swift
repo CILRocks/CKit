@@ -8,9 +8,7 @@
 
 #if os(iOS)
     import UIKit
-#endif
-
-#if os(iOS)
+    
     @available(iOS 9.0, *)
     open class CKPanMenuViewController: CKViewController, UIGestureRecognizerDelegate {
         @IBOutlet public weak var contentView: UIView!

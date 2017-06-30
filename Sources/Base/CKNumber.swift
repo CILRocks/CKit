@@ -148,6 +148,20 @@ public extension Double {
     }
 }
 
+public extension TimeInterval {
+    var ckMinutes: TimeInterval {
+        return self * 60
+    }
+    
+    var ckHours: TimeInterval {
+        return self * 3600
+    }
+    
+    var ckDays: TimeInterval {
+        return self * 86400
+    }
+}
+
 public extension Float {
     var radius: Float {
         return self * Float(Double.pi / 180)

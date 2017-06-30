@@ -29,6 +29,18 @@ public extension NSLocale {
     }
 }
 
+public extension NSDate {
+    var date: Date {
+        return Date(timeIntervalSince1970: self.timeIntervalSince1970)
+    }
+}
+
+public extension Date {
+    var nsDate: NSDate {
+        return NSDate(timeIntervalSince1970: self.timeIntervalSince1970)
+    }
+}
+
 public extension String {
     subscript (i: Int) -> Character {
         return self[self.characters.index(self.startIndex, offsetBy: i)]
@@ -52,7 +64,7 @@ public extension String {
     
     //To numbers
     var int: Int {
-        return Int(self)!
+        return Int(self) ?? 0
     }
     
     var cgFloat: CGFloat {
@@ -154,6 +166,10 @@ public extension Bool {
     
     mutating func reverse() {
         self = !self
+    }
+    
+    var reversed: Bool {
+        return !self
     }
 }
 
