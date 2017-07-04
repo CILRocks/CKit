@@ -49,6 +49,12 @@ import Foundation
         }
     }
     
+    public extension UIStoryboard {
+        static var main: UIStoryboard {
+            return UIStoryboard(name: "Main", bundle: .main)
+        }
+    }
+    
     public extension UIView {
         var uiImage: UIImage? {
             return UIImage(view: self).resized(to: bounds.size)
@@ -63,10 +69,17 @@ import Foundation
         }
     }
     
+    public extension UITableView {
+        func reloadDataWithAnimation(_ animation: UITableViewRowAnimation = .automatic) {
+            let sections = IndexSet(integersIn: 0...self.numberOfSections - 1)
+            self.reloadSections(sections, with: animation)
+        }
+    }
+    
     public extension UIFont {
-        func change(weight: String, size: CGFloat?) -> UIFont {
-            let name = self.fontName.components(separatedBy: "-").first
-            return UIFont(name: "\(name!)-\(weight)", size: size ?? self.pointSize)!
+        func change(weight: String?, size: CGFloat?) -> UIFont {
+            let name = self.fontName.components(separatedBy: "-").first!
+            return UIFont(name: weight == nil ? self.fontName : "\(name)-\(weight!)", size: size ?? self.pointSize)!
         }
     }
     
