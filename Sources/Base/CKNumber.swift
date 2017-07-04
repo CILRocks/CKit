@@ -93,10 +93,16 @@ public extension Int {
     }
     
     /**
-     Square root the `int`.
+     Square the `int`.
      */
-    mutating func sqr() -> Int {
-        self = self * self
+    mutating func sqr() {
+        self = self.squared
+    }
+    
+    /**
+     Get a new squared `int`.
+     */
+    var squared: Int {
         return self * self
     }
     
@@ -264,11 +270,17 @@ public extension Float {
     }
     
     /**
-     Square root the `float`.
+     Square the `float`.
      */
-    mutating func sqr() -> Float? {
-        self = self * self
-        return self
+    mutating func sqr() {
+        self = self.squared
+    }
+    
+    /**
+     Get a new squared `float`.
+     */
+    var squared: Float {
+        return self * self
     }
     
     /**
@@ -333,10 +345,16 @@ public extension CGFloat {
     }
     
     /**
-     Square root the Core Graphic `float`.
+     Square the Core Graphic `float`.
      */
-    mutating func sqr() -> CGFloat {
-        self = self * self
+    mutating func sqr() {
+        self = self.squared
+    }
+    
+    /**
+     Get a new squared Core Graphic `float`.
+     */
+    var squared: CGFloat {
         return self * self
     }
     
