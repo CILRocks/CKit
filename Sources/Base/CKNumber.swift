@@ -43,16 +43,23 @@ public func ~=*<T: FloatingPoint>(lhs: T, rhs: (T, T)) -> Bool {
 }
 
 public extension Int {
+    /**
+     Create an `integer` from `bool`.
+     
+     - parameter bool: A `bool` value.
+     */
     init(fromBool bool: Bool) {
         self.init()
         
-        if bool {
-            self = 1
-        } else {
-            self = 0
-        }
+        self = bool ? 1 : 0
     }
     
+    /**
+     Create a random `integer` within given range.
+     
+     - parameter a: Minimal limit. `default` is `0`
+     - parameter b: Maximal limit.
+     */
     static func random(_ a: Int = 0, _ b: Int) -> Int {
         var a = a
         var b = b
@@ -62,15 +69,26 @@ public extension Int {
         return Int(arc4random_uniform(UInt32(b - a + 1))) + a
     }
     
+    /**
+     Square root the `integer`.
+     */
     mutating func sqr() -> Int {
         self = self * self
         return self * self
     }
     
+    /**
+     The `string` representation of the `integer`.
+     */
     var string: String {
         return "\(self)"
     }
     
+    /**
+     The `string` representation of the `integer` with a given digit length.
+     
+     - parameter digits: How many digits you want the result `string` have.
+     */
     func string(digits: Int) -> String {
         var s = self.string
         if s.characters.count < digits {
@@ -82,18 +100,33 @@ public extension Int {
         return s
     }
     
+    /**
+     The `double` representation of the `integer`.
+     */
     var double: Double {
         return Double(self)
     }
     
+    /**
+     The Core Graphic `float` representation of the `integer`.
+     */
     var cgFloat: CGFloat {
         return CGFloat(self)
     }
     
+    /**
+     The `float` representation of the `integer`.
+     */
     var float: Float {
         return Float(self)
     }
     
+    /**
+     Clamp the `integer` to given range.
+     
+     - parameter begin: Minimal limit.
+     - parameter end: Maximal limit.
+     */
     mutating func limitIn(_ begin: Int, _ end: Int) {
         if self < begin {
             self = begin

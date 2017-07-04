@@ -150,8 +150,6 @@
          
          - parameter itemWithTitle: `item title`.
          - parameter action: an `action` that will be executed when user highlight and release finger on an `menu item`.
-         
-         - author: John Cido
          */
         final public func append(itemWithTitle title: String, action: @escaping (inout CKPanMenuItemType) -> Void) {
             let item = CKPanMenuItem()
@@ -176,8 +174,6 @@
          - parameter itemWithTitle: `item title`.
          - parameter action: an `action` that will be executed when user highlight and release finger on an `menu item`.
          - parameter at: specify `index` that item should be insert at
-         
-         - author: John Cido
          */
         final public func insert(
             itemWithTitle title: String, action: @escaping (inout CKPanMenuItemType) -> Void, at index: Int
@@ -202,8 +198,6 @@
          Append a custome defined `menu item`.
          
          - parameter item: an `item title` that conforms to `protocol CKPanMenuItemType`.
-         
-         - author: John Cido
          */
         final public func append(item: CKPanMenuItemType) {
             var item = item

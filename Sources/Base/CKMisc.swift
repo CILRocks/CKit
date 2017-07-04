@@ -104,14 +104,14 @@ public extension String {
         return randomString
     }
     
-    func capitalizingFirstLetter() -> String {
+    func capitalizedFirstLetter() -> String {
         let first = String(characters.prefix(1)).capitalized
         let other = String(characters.dropFirst())
         return first + other
     }
     
     mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
+        self = self.capitalizedFirstLetter()
     }
     
     mutating func escape() {
@@ -135,7 +135,7 @@ public extension String {
     }
     
     mutating func format(using format: String) {
-        self = String(format: format, self)
+        self = self.formatted(using: format)
     }
     
     func formatted(using format: String) -> String {
@@ -151,23 +151,18 @@ public extension Bool {
     init(fromInt int: Int) {
         self.init()
         
-        if int == 0 {
-            self = false
-        } else {
-            self = true
+        if int != 0 && int != 1 {
+            fatalError("Trying to create bool from a non zero or one integer.")
         }
+        self = int == 1
     }
     
-    func toInt() -> Int {
-        if self {
-            return 1
-        } else {
-            return 0
-        }
+    var int: Int {
+        return self ? 1 : 0
     }
     
     var string: String {
-        return "\(self)"
+        return self.description
     }
     
     mutating func reverse() {
