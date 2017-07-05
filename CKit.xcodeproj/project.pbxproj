@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B23A5E7D1F0BD3220046A5F3 /* CKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C243E51E509FA800D14B2B /* CKit.framework */; };
-		B23A5E821F0BD3BD0046A5F3 /* CKChartBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A5E811F0BD3BD0046A5F3 /* CKChartBase.swift */; };
-		B23A5E841F0BD4210046A5F3 /* CKChartGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A5E831F0BD4210046A5F3 /* CKChartGroupView.swift */; };
+		B23A5E821F0BD3BD0046A5F3 /* CKChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A5E811F0BD3BD0046A5F3 /* CKChart.swift */; };
+		B23A5E841F0BD4210046A5F3 /* CKChartLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A5E831F0BD4210046A5F3 /* CKChartLayer.swift */; };
 		B23A5E861F0BD44F0046A5F3 /* CKChartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A5E851F0BD44F0046A5F3 /* CKChartPoint.swift */; };
 		B24E18051E9912B6001B20E4 /* CKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E18041E9912B6001B20E4 /* CKNumber.swift */; };
 		B24E18061E9912D5001B20E4 /* CKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E18041E9912B6001B20E4 /* CKNumber.swift */; };
@@ -28,8 +28,8 @@
 /* Begin PBXFileReference section */
 		B23A5E751F0BD2C60046A5F3 /* CKChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23A5E7F1F0BD3790046A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CKChart/Info.plist; sourceTree = "<group>"; };
-		B23A5E811F0BD3BD0046A5F3 /* CKChartBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKChartBase.swift; path = CKChart/CKChartBase.swift; sourceTree = "<group>"; };
-		B23A5E831F0BD4210046A5F3 /* CKChartGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKChartGroupView.swift; path = CKChart/CKChartGroupView.swift; sourceTree = "<group>"; };
+		B23A5E811F0BD3BD0046A5F3 /* CKChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKChart.swift; path = CKChart/CKChart.swift; sourceTree = "<group>"; };
+		B23A5E831F0BD4210046A5F3 /* CKChartLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKChartLayer.swift; path = CKChart/CKChartLayer.swift; sourceTree = "<group>"; };
 		B23A5E851F0BD44F0046A5F3 /* CKChartPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKChartPoint.swift; path = CKChart/CKChartPoint.swift; sourceTree = "<group>"; };
 		B24E18041E9912B6001B20E4 /* CKNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNumber.swift; sourceTree = "<group>"; };
 		B267506F1E68D88E0011E264 /* CKViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKViewModel.swift; path = ViewModel/CKViewModel.swift; sourceTree = "<group>"; };
@@ -73,8 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				B23A5E7F1F0BD3790046A5F3 /* Info.plist */,
-				B23A5E811F0BD3BD0046A5F3 /* CKChartBase.swift */,
-				B23A5E831F0BD4210046A5F3 /* CKChartGroupView.swift */,
+				B23A5E811F0BD3BD0046A5F3 /* CKChart.swift */,
+				B23A5E831F0BD4210046A5F3 /* CKChartLayer.swift */,
 				B23A5E851F0BD44F0046A5F3 /* CKChartPoint.swift */,
 			);
 			name = CKChart;
@@ -299,9 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B23A5E821F0BD3BD0046A5F3 /* CKChartBase.swift in Sources */,
+				B23A5E821F0BD3BD0046A5F3 /* CKChart.swift in Sources */,
 				B23A5E861F0BD44F0046A5F3 /* CKChartPoint.swift in Sources */,
-				B23A5E841F0BD4210046A5F3 /* CKChartGroupView.swift in Sources */,
+				B23A5E841F0BD4210046A5F3 /* CKChartLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +748,7 @@
 				B23A5E7C1F0BD2C70046A5F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2C2437A1E508A8200D14B2B /* Build configuration list for PBXProject "CKit" */ = {
 			isa = XCConfigurationList;

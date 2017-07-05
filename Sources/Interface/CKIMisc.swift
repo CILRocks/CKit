@@ -247,11 +247,6 @@ public extension CGSize {
 }
 
 extension NSLayoutConstraint {
-//    override open var description: String {
-//        let id = identifier ?? ""
-//        return "id: \(id), constant: \(constant), \(firstItem.description))"
-//    }
-    
     public func setMultiplier(_ aCGFloat: CGFloat) {
         NSLayoutConstraint.deactivate([self])
         
