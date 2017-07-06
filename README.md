@@ -1,4 +1,4 @@
-![Icon](icon@2x.png)
+![Icon](icon.png)
 
 # Ckit
 
