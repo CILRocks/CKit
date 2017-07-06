@@ -1,3 +1,5 @@
+![Icon](icon@2x.png)
+
 # Ckit
 
 [![Build Status](https://travis-ci.org/JohnCido/CKit.svg?branch=master)](https://travis-ci.org/JohnCido/CKit)
