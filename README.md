@@ -2,7 +2,7 @@
 
 # Ckit
 
-[![Build Status](https://travis-ci.org/JohnCido/CKit.svg?branch=master)](https://travis-ci.org/JohnCido/CKit)
+[![Build Status](https://travis-ci.org/JohnCido/CKit.svg?branch=master)](https://travis-ci.org/JohnCido/CKit)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a7a59f41254a43dfa52c599ebace633d)](https://www.codacy.com/app/johncido/CKit?utm_source=github.com&utm_medium=referral&utm_content=JohnCido/CKit&utm_campaign=Badge_Grade)
 
 Handy Swift extensions and more.
 
