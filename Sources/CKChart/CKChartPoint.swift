@@ -25,6 +25,10 @@ open class CKChartPoint {
     }
 }
 
+extension CKChartPoint: CKChartDataPoint {
+    
+}
+
 open class CKChartDataBound {
     var minX: Double = 0
     var maxX: Double = 0
@@ -37,4 +41,10 @@ open class CKChartDataBound {
         maxX = x.max()!
         maxY = y.max()!
     }
+}
+
+public protocol CKChartDataPoint {
+    var x: Double { get }
+    var y: Double { get }
+    var name: String? { get }
 }

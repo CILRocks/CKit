@@ -321,6 +321,14 @@ public extension Array {
             return CGPoint.zero
         }
     }
+    
+    func toTuple(with array: [Any]) -> [(Any, Any)] {
+        var result = [(Any, Any)]()
+        for i in 0...self.count {
+            result.append((self[i], array[i]))
+        }
+        return result
+    }
 }
 
 public extension UserDefaults {

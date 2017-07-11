@@ -60,12 +60,47 @@ import Foundation
             return UIImage(view: self).resized(to: bounds.size)
         }
         
-        func addConstraint(withWidthEqualTo width: CGFloat) {
+        func addConstraint(withWidth width: CGFloat) {
             self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width))
         }
         
-        func addConstraint(withHieghtEqualTo width: CGFloat) {
-            self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width))
+        func addConstraint(withHeight height: CGFloat) {
+            self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        }
+        
+        func addConstraint(withWidthEqualTo view: UIView) {
+            self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0))
+        }
+        
+        func addConstraint(withEdge attribute: NSLayoutAttribute, alignsTo view: UIView) {
+            self.addConstraint(NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .equal, toItem: view, attribute: attribute, multiplier: 1, constant: 0))
+        }
+        
+        func addConstraint(withTopAlignsTo view: UIView) {
+            self.addConstraint(withEdge: .top, alignsTo: view)
+        }
+        
+        func addConstraint(withBottomAlignsTo view: UIView) {
+            self.addConstraint(withEdge: .bottom, alignsTo: view)
+        }
+        
+        func addConstraint(withLeadingAlignsTo view: UIView) {
+            self.addConstraint(withEdge: .leading, alignsTo: view)
+        }
+        
+        func addConstraint(withTrailingAlignsTo view: UIView) {
+            self.addConstraint(withEdge: .trailing, alignsTo: view)
+        }
+        
+        func addConstraint(withAllEdgesAlignTo view: UIView) {
+            addConstraint(withTopAlignsTo: view)
+            addConstraint(withBottomAlignsTo: view)
+            addConstraint(withLeadingAlignsTo: view)
+            addConstraint(withTrailingAlignsTo: view)
+        }
+        
+        func removeAllSubviews() {
+            self.subviews.forEach({ $0.removeFromSuperview() })
         }
     }
     
@@ -246,7 +281,7 @@ public extension CGSize {
     }
 }
 
-extension NSLayoutConstraint {
+public extension NSLayoutConstraint {
     public func setMultiplier(_ aCGFloat: CGFloat) {
         NSLayoutConstraint.deactivate([self])
         
@@ -256,5 +291,11 @@ extension NSLayoutConstraint {
         new.identifier = identifier
         
         NSLayoutConstraint.activate([new])
+    }
+}
+
+public extension CGAffineTransform {
+    init(scale: CGFloat) {
+        self.init(scaleX: scale, y: scale)
     }
 }
