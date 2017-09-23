@@ -9,7 +9,7 @@
 import UIKit
 
 open class CKChart: UIView {
-    public var isInteractionEnabled = false
+    @objc public var isInteractionEnabled = false
     final public var delegate: CKChartDelegate?
     
     @IBInspectable final public var vGuideColor: UIColor = .clear
@@ -25,7 +25,7 @@ open class CKChart: UIView {
     final private var layers = [CKChartLayer]()
     final private let axisLayer = CAShapeLayer()
     final private let guideLayer = CAShapeLayer()
-    final public var drawingBound: CGRect {
+    @objc final public var drawingBound: CGRect {
         return bounds
     }
     final public var dataBound: CKChartDataBound {
@@ -45,7 +45,7 @@ open class CKChart: UIView {
         super.awakeFromNib()
     }
     
-    open func add(layer: CKChartLayer) {
+    @objc open func add(layer: CKChartLayer) {
         layer.baseDelegate = self
         layers.append(layer)
         layer.addSublayer(layer)
@@ -59,7 +59,7 @@ open class CKChart: UIView {
 }
 
 extension CKChart: CKChartLayerDelegate {
-    public func redraw(_ sender: CKChartLayer? = nil) {
+    @objc public func redraw(_ sender: CKChartLayer? = nil) {
         resize()
     }
 }

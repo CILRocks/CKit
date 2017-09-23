@@ -10,17 +10,17 @@ import UIKit
 
 open class CKChartLayer: CAShapeLayer {
     final public var points = [CKChartPoint]()
-    final public var allX: [Double] {
+    @objc final public var allX: [Double] {
         return points.map { (p) -> Double in
             return p.x
         }
     }
-    final public var allY: [Double] {
+    @objc final public var allY: [Double] {
         return points.map { (p) -> Double in
             return p.y
         }
     }
-    final public var pointImage: UIImage?
+    @objc final public var pointImage: UIImage?
     final public var baseDelegate: CKChartLayerDelegate?
     
     final fileprivate let shapeLayer = CAShapeLayer()

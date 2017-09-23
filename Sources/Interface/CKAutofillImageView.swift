@@ -16,7 +16,7 @@ import Foundation
     open class CKAutofillImageView: NSView {
         @IBInspectable var imageNamed: String = "" {
             didSet {
-                imageView.image = NSImage(named: imageNamed)
+                imageView.image = NSImage(named: NSImage.Name(rawValue: imageNamed))
             }
         }
         
@@ -42,8 +42,8 @@ import Foundation
         open override func awakeFromNib() {
             addSubview(imageView)
             imageView.frame = bounds
-            imageView.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .horizontal)
-            imageView.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .vertical)
+            imageView.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
+            imageView.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .vertical)
             
             addSubview(scrim)
             scrim.wantsLayer = true

@@ -231,9 +231,9 @@
             return a || b
         }
         
-        open func contentDidPanPerpendicular(_ recognizer: UIPanGestureRecognizer) { }
+        @objc open func contentDidPanPerpendicular(_ recognizer: UIPanGestureRecognizer) { }
         
-        open func contentDidPan(_ recognizer: UIPanGestureRecognizer) {
+        @objc open func contentDidPan(_ recognizer: UIPanGestureRecognizer) {
             if isEnabled {
             let state = recognizer.state
             let translation = recognizer.translation(in: view)

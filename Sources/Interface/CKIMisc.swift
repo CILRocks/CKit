@@ -285,7 +285,7 @@ public extension NSLayoutConstraint {
     public func setMultiplier(_ aCGFloat: CGFloat) {
         NSLayoutConstraint.deactivate([self])
         
-        let new = NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: aCGFloat, constant: constant)
+        let new = NSLayoutConstraint(item: firstItem as Any, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: aCGFloat, constant: constant)
         new.priority = priority
         new.shouldBeArchived = shouldBeArchived
         new.identifier = identifier

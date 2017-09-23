@@ -22,7 +22,7 @@ infix operator ~=+
  - parameter lhs: The number to test.
  - parameter rhs: Will check if `lhs` falls between `rhs.0-rhs.1` and `rhs.0+rhs.1`
  */
-public func ~=+<T: Integer>(lhs: T, rhs: (T, T)) -> Bool {
+public func ~=+<T: BinaryInteger>(lhs: T, rhs: (T, T)) -> Bool {
     let r = rhs.0
     let f = rhs.1
     return lhs > r - f && lhs < r + f
@@ -47,7 +47,7 @@ infix operator ~=*
  - parameter lhs: The number to test.
  - parameter rhs: Will check if `lhs` falls between `rhs.0-rhs.0*rhs.1` and `rhs.0+rhs.0*rhs.1`
  */
-public func ~=*<T: Integer>(lhs: T, rhs: (T, T)) -> Bool {
+public func ~=*<T: BinaryInteger>(lhs: T, rhs: (T, T)) -> Bool {
     let r = rhs.0
     let p = rhs.1
     return lhs > r - r * p && lhs < r + r * p

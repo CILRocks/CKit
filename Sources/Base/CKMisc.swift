@@ -24,7 +24,7 @@ import Foundation
 
 public extension IndexPath {
     init(_ row: Int, section: Int = 0) {
-        self.init(row: row, section: section)
+        self.init(row, section: section)
     }
 }
 
@@ -89,7 +89,7 @@ public extension String {
     subscript (r: Range<Int>) -> String {
         let start = index(startIndex, offsetBy: r.lowerBound)
         let end = index(startIndex, offsetBy: r.upperBound)
-        return self[start..<end]
+        return String(self[start..<end])
     }
     
     /**
@@ -100,7 +100,7 @@ public extension String {
     subscript (r: ClosedRange<Int>) -> String {
         let start = index(startIndex, offsetBy: r.lowerBound)
         let end = index(startIndex, offsetBy: r.upperBound)
-        return self[start...end]
+        return String(self[start...end])
     }
     
     /**
