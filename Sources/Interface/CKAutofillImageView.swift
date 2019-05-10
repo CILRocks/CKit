@@ -16,7 +16,7 @@ import Foundation
     open class CKAutofillImageView: NSView {
         @IBInspectable var imageNamed: String = "" {
             didSet {
-                imageView.image = NSImage(named: NSImage.Name(rawValue: imageNamed))
+                imageView.image = NSImage(named: imageNamed)
             }
         }
         

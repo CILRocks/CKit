@@ -339,7 +339,7 @@
                     text = title
                 } else {
                     let r = reason == nil ? "" : reason!
-                    text = "\(title) (\(r))"
+                    text = "\(String(describing: title)) (\(r))"
                 }
             }
         }

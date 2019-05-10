@@ -22,11 +22,11 @@ import Foundation
     
 #endif
 
-public extension IndexPath {
-    init(_ row: Int, section: Int = 0) {
-        self.init(row, section: section)
-    }
-}
+//public extension IndexPath {
+//    init(_ row: Int, section: Int = 0) {
+//        self.init(row, section: section)
+//    }
+//}
 
 public extension NSLocale {
     /**
@@ -69,7 +69,7 @@ public extension String {
      - parameter i: The index.
      */
     subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
+        return self[self.index(self.startIndex, offsetBy: i)]
     }
     
     /**
@@ -166,8 +166,8 @@ public extension String {
      Get a new `string` with first letter capitalized.
      */
     func capitalizedFirstLetter() -> String {
-        let first = String(characters.prefix(1)).capitalized
-        let other = String(characters.dropFirst())
+        let first = prefix(1).capitalized
+        let other = dropFirst()
         return first + other
     }
     
@@ -346,7 +346,7 @@ public extension UserDefaults {
     }
 }
 
-public extension LazyMapRandomAccessCollection {
+public extension LazyMapCollection {
     /**
      The `array` representation of the `lazyMapRandomAccessCollection`.
      */

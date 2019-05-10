@@ -22,7 +22,7 @@ import Foundation
             var int = UInt32()
             Scanner(string: hex).scanHexInt32(&int)
             let a, r, g, b: UInt32
-            switch hex.characters.count {
+            switch hex.count {
             case 3: // RGB (12-bit)
                 (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
             case 6: // RGB (24-bit)
@@ -72,7 +72,7 @@ import Foundation
             self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0))
         }
         
-        func addConstraint(withEdge attribute: NSLayoutAttribute, alignsTo view: UIView) {
+        func addConstraint(withEdge attribute: NSLayoutConstraint.Attribute, alignsTo view: UIView) {
             self.addConstraint(NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .equal, toItem: view, attribute: attribute, multiplier: 1, constant: 0))
         }
         
@@ -105,7 +105,7 @@ import Foundation
     }
     
     public extension UITableView {
-        func reloadDataWithAnimation(_ animation: UITableViewRowAnimation = .automatic) {
+        func reloadDataWithAnimation(_ animation: UITableView.RowAnimation = .automatic) {
             let sections = IndexSet(integersIn: 0...self.numberOfSections - 1)
             self.reloadSections(sections, with: animation)
         }
@@ -238,7 +238,7 @@ import Foundation
             var int = UInt32()
             Scanner(string: hex).scanHexInt32(&int)
             let a, r, g, b: UInt32
-            switch hex.characters.count {
+            switch hex.count {
             case 3: // RGB (12-bit)
                 (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
             case 6: // RGB (24-bit)
@@ -282,7 +282,7 @@ public extension CGSize {
 }
 
 public extension NSLayoutConstraint {
-    public func setMultiplier(_ aCGFloat: CGFloat) {
+    func setMultiplier(_ aCGFloat: CGFloat) {
         NSLayoutConstraint.deactivate([self])
         
         let new = NSLayoutConstraint(item: firstItem as Any, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: aCGFloat, constant: constant)

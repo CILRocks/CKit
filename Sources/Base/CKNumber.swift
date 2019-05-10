@@ -120,8 +120,8 @@ public extension Int {
      */
     func string(digits: Int) -> String {
         var s = self.string
-        if s.characters.count < digits {
-            let left = digits - s.characters.count
+        if s.count < digits {
+            let left = digits - s.count
             for _ in 1...left {
                 s = "0\(s)"
             }
