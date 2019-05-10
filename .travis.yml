@@ -2,6 +2,6 @@ language: swift
 xcode_project: CKit.xcodeproj
 xcode_scheme: CKit iOS
 os: osx
-osx_image: xcode8.3
+osx_image: xcode10.2
 env:
   CODECLIMATE_REPO_TOKEN: 4317e911a812982b75fa31191003b04a7209326a2b83b71bd6a0e2fecdfccc62

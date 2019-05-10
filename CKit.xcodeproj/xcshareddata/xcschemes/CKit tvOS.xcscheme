@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2F2DB282285706A0084082E"
-               BuildableName = "CKit.framework"
-               BlueprintName = "CKit watchOS"
+               BlueprintIdentifier = "B2F2DB35228575100084082E"
+               BuildableName = "CKit_tvOS.framework"
+               BlueprintName = "CKit tvOS"
                ReferencedContainer = "container:CKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B2F2DB282285706A0084082E"
-            BuildableName = "CKit.framework"
-            BlueprintName = "CKit watchOS"
+            BlueprintIdentifier = "B2F2DB35228575100084082E"
+            BuildableName = "CKit_tvOS.framework"
+            BlueprintName = "CKit tvOS"
             ReferencedContainer = "container:CKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B2F2DB282285706A0084082E"
-            BuildableName = "CKit.framework"
-            BlueprintName = "CKit watchOS"
+            BlueprintIdentifier = "B2F2DB35228575100084082E"
+            BuildableName = "CKit_tvOS.framework"
+            BlueprintName = "CKit tvOS"
             ReferencedContainer = "container:CKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
